@@ -1,5 +1,15 @@
+/* body {
+  text-align: center;
+} */
+
+p {
+  text-align: center;
+}
+
 input {
   padding: 8px 12px;
+  margin: auto;
+  display: block;
   width: 195px;
   font-size: 16px;
   font-weight: 700;
@@ -9,6 +19,8 @@ input {
 
 button {
   padding: 8px 12px;
+  margin: 12px auto 0;
+  display: block;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -16,10 +28,15 @@ button {
   cursor: pointer;
 }
 
+button[disabled] {
+  cursor: not-allowed;
+}
+
 .timer {
   display: flex;
   gap: 8px;
   margin-top: 24px;
+  justify-content: center;
 }
 
 .field {
@@ -29,12 +46,15 @@ button {
 }
 
 .value {
-  font-size: 36px;
+  font-size: 44px;
+  text-shadow: 1px 1px 2px darkseagreen;
   padding: 0 8px;
-  border: 3px solid orange;
+  border: 3px solid indianred;
   border-radius: 12px;
 }
 
 .label {
   font-size: 14px;
+  font-weight: 700;
+  color: indianred;
 }

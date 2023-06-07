@@ -1,4 +1,5 @@
 import flatpickr from 'flatpickr';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import 'flatpickr/dist/flatpickr.min.css';
 import '../css/timer.css';
 
@@ -7,7 +8,7 @@ const TIMER_DELAY = 1000;
 const datetimePickerEl = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 const timerEl = document.querySelector('.timer');
-const refs = {
+const timerElRefs = {
   days: timerEl.querySelector('[data-days]'),
   hours: timerEl.querySelector('[data-hours]'),
   minutes: timerEl.querySelector('[data-minutes]'),
@@ -23,7 +24,6 @@ startBtn.disabled = true;
 startBtn.addEventListener('click', () => {
   startTimer(selectedDate);
   timerIntervalId = setInterval(() => startTimer(selectedDate), TIMER_DELAY);
-  console.log(timerIntervalId);
 });
 
 function initializeFlatpickr() {
@@ -34,8 +34,10 @@ function initializeFlatpickr() {
     minuteIncrement: 1,
     onClose(selectedDates) {
       if (selectedDates[0].getTime() < Date.now()) {
-        window.alert('Please choose a date in the future');
+        Report.warning('Please choose a date in the future.');
+        startBtn.disabled = true;
       } else {
+        Report.success('Great! You can start timer now.');
         startBtn.disabled = false;
         selectedDate = selectedDates[0];
         return selectedDate;
@@ -79,8 +81,8 @@ function addLeadingZero(value) {
 }
 
 function updateTimer({ days, hours, minutes, seconds }) {
-  refs.days.textContent = addLeadingZero(days);
-  refs.hours.textContent = addLeadingZero(hours);
-  refs.minutes.textContent = addLeadingZero(minutes);
-  refs.seconds.textContent = addLeadingZero(seconds);
+  timerElRefs.days.textContent = addLeadingZero(days);
+  timerElRefs.hours.textContent = addLeadingZero(hours);
+  timerElRefs.minutes.textContent = addLeadingZero(minutes);
+  timerElRefs.seconds.textContent = addLeadingZero(seconds);
 }
