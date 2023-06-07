@@ -1,7 +1,6 @@
 import flatpickr from 'flatpickr';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import 'flatpickr/dist/flatpickr.min.css';
-import '../css/timer.css';
 
 const TIMER_DELAY = 1000;
 
