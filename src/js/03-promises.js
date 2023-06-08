@@ -77,6 +77,8 @@ function onSubmit(evt) {
         );
       });
   }
+
+  form.reset();
 }
 
 function highlightField(el) {
